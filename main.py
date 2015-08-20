@@ -1,4 +1,4 @@
-from utils import session_helper
+from utils import session_helper, graph_helper
 import argparse, itertools, time
 
 def test_main(filename):
@@ -13,13 +13,21 @@ def test_main(filename):
         nodes = session.get_nodes()
 
         # test communication between each pair of nodes
-        for x, y in itertools.product(nodes, nodes):
-                if x != y:
-                        addr_x = session_helper.addr_of(x)
-                        addr_y = session_helper.addr_of(y)
-                        print("ping %s -> %s" % (addr_x, addr_y))
-                        x.icmd(["bash", "-c", "ping -c 1 %s | tail -2 | head -1" % addr_y])
-                        print("")
+        #for x, y in itertools.product(nodes, nodes):
+        #        if x != y:
+        #                addr_x = session_helper.addr_of(x)
+        #                addr_y = session_helper.addr_of(y)
+        #                print("ping %s -> %s" % (addr_x, addr_y))
+        #                x.icmd(["bash", "-c", "ping -c 1 %s | tail -2 | head -1" % addr_y])
+        #                print("")
+        #session.get_adjacencies(nodes[0])
+        g = graph_helper(nodes, session.get_adjacencies)
+        cc = g.dfs_connected_components()
+        for c in cc:
+                print("New component: ")
+                for n in c:
+                        print(n.name)
+                print("")
 
         # end scenario
         session.shutdown()
