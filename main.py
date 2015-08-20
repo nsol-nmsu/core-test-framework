@@ -4,14 +4,6 @@ import argparse, itertools, time
 def test_main(filename):
         """ Imports a topology from the given XML file and tests communication
             between each pair of nodes.
-            
-            Each wireless network in the topology will use the BasicRangeModel
-            with the default parameters to determine adjacencies.
-            
-            CORE behaves badly when importing an XML session, making it
-            necessary to copy each node and interface into a new session. The
-            temporary session loaded from the XML file is shutdown after it
-            has been copied into the new session.
         """
 
         # load xml file

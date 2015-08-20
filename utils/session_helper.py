@@ -2,13 +2,30 @@ from core import pycore, misc, mobility, netns, api
 import re
 
 class session_helper(pycore.Session):
+        """
+        Create a CORE session containing the nodes and interfaces defined
+        in the given XML session definition.          
+            
+        Each wireless network in the topology will use the BasicRangeModel
+        with the default parameters to determine adjacencies.
+            
+        CORE behaves badly when importing an XML session, making it
+        necessary to copy each node and interface into a new session. The
+        temporary session loaded from the XML file is shutdown after it
+        has been copied into the new session.
+        """
 
         def __init__(self, xml_file):
+                """ Instantiate a session based on the given xml file.
+                """
                 super(session_helper, self).__init__()
                 self._xml_file = xml_file
                 self._import()
         
         def _import(self):
+                """ Internal routine: create a temporary session and import
+                    nodes and interfaces from it.
+                """
         
                 # create temp session from which to import nodes and interfaces
                 tmp = pycore.Session()
@@ -42,10 +59,14 @@ class session_helper(pycore.Session):
                 tmp.shutdown()
         
         def get_nodes(self):
+                """ Returns a list of CoreNode objects contained in the session
+                """
                 return [x for x in self.objs() if isinstance(x, netns.nodes.CoreNode)]
         
         @staticmethod
         def _aggregate_addrlist(node):
+                """ Returns a list of all IP addresses associated with a node
+                """
                 l = []
                 for i in node.netifs():
                         l.extend(i.addrlist)
@@ -53,6 +74,8 @@ class session_helper(pycore.Session):
                 
         @staticmethod
         def addr_of(node):
+                """ Returns the first IPv4 address of a particular node
+                """
                 return session_helper.get_ipv4_addr(session_helper._aggregate_addrlist(node))
         
         @staticmethod
@@ -60,6 +83,10 @@ class session_helper(pycore.Session):
                 """
                 Given a list of strings, return the first one that looks like an
                 IPv4 address. Returns None if no IPv4 address is found.
+                
+                The addresses may be CIDR addresses, e.g. 10.0.0.0/24; in this
+                case, only the actual address will be returned and the mask will
+                be omitted.
                 """
                 exp = re.compile("^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})(\/[0-9]{1,2})?$")
                 for ip in addr_list:
