@@ -1,4 +1,5 @@
 from core import pycore, misc, mobility, netns, api
+import xml.etree.ElementTree
 import re
 
 class session_helper(pycore.Session):
@@ -22,6 +23,41 @@ class session_helper(pycore.Session):
                 self._xml_file = xml_file
                 self._import()
         
+        def _model_params(self, net_name):
+                """ Retrieves the parameters of the basic_range model used on
+                    the network with the given net_name.
+                """
+        
+                # open xml file
+                tree = xml.etree.ElementTree.parse(self._xml_file)
+                root = tree.getroot()
+                
+                # use default params if the network is not found
+                parms = {
+                        'range':     275,
+                        'bandwidth': 54000000,
+                        'jitter':    0,
+                        'delay':     20000,
+                        'error':     0
+                }
+                
+                # locate this network and extract its parameters
+                for e in root.findall("network"):
+                        if e.get('name') == net_name:
+                                continue
+                        chan = e.find("channel")
+                        cmod = chan.find("type")
+                        cpar = chan.findall("parameter")
+                        if cmod.text != "basic_range":
+                                raise Exception("This network uses a model other than basic_range. Only the basic_range model is supported at this time.")
+                        for p in cpar:
+                                parms[p.get("name")] = p.text
+                        break
+                
+                # return the parameters as a list
+                return [parms['range'], parms['bandwidth'], parms['jitter'], parms['delay'], parms['error']]
+                        
+        
         def _import(self):
                 """ Internal routine: create a temporary session and import
                     nodes and interfaces from it.
@@ -42,7 +78,7 @@ class session_helper(pycore.Session):
                                 wn = self.addobj(netns.nodes.WlanNode, name=wo.name)
                                 x, y, z = wo.getposition()
                                 wn.setposition(x, y, z)
-                                wn.setmodel(mobility.BasicRangeModel, [275, 54000000, 0, 20000, 0])
+                                wn.setmodel(mobility.BasicRangeModel, self._model_params(wo.name))
                         elif isinstance(o, netns.nodes.CoreNode):
                                 n = self.addobj(netns.nodes.CoreNode, name=o.name)
                                 x, y, z = o.getposition()
