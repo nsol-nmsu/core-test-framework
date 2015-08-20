@@ -99,6 +99,18 @@ class session_helper(pycore.Session):
                 """
                 return [x for x in self.objs() if isinstance(x, netns.nodes.CoreNode)]
         
+        def get_adjacencies(self, node):
+                """ Returns a list of nodes adjacent to the node given as an argument
+                """
+                l = [x for x in node.netifs() if isinstance(x.net, netns.nodes.WlanNode)][0].net
+                r = []
+                with l._linked_lock:
+                        for a in l._linked:
+                                for b in l._linked[a]:
+                                        if l._linked[a][b] and (a.node == node or b.node == node):
+                                                r.append(list(set([a.node, b.node]) - set([node]))[0])
+                return r
+        
         @staticmethod
         def _aggregate_addrlist(node):
                 """ Returns a list of all IP addresses associated with a node
