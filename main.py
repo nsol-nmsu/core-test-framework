@@ -13,7 +13,17 @@ def main():
         parser.add_argument('xml_file', type=str)
         args = parser.parse_args()
         t = jadhoc_test(args.xml_file)
-        t.do_test()
+        
+        results = t.do_test()
+        success = True
+        print("Src\tDest\tTTL\tLatency")
+        for ((x, y), (pair_success, log)) in results.items():
+                success &= pair_success
+                for (ttl, lat) in log:
+                        print("%s\t%s\t%d\t%f" % (x, y, ttl, lat))
+        
+        print("\nTest status: %s" % ("Pass" if success else "Fail"))
+        
         t.close()
 
 if __name__ == "__main__" or __name__ == "__builtin__":

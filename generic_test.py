@@ -78,6 +78,7 @@ class generic_test :
         def do_test(self):
                 """ Run the tests
                 """
+                res = {}
         
                 # test communication between each pair of nodes in each connected component
                 g = graph_helper(self.nodes, self.session.get_adjacencies)
@@ -85,9 +86,8 @@ class generic_test :
                 for c in cc:
                         for x, y in itertools.product(c, c):
                                 if x != y:
-                                       print("%s -> %s: " % (x.name, y.name))
-                                       r = self.test_pair(x, y) 
-                                       print(r)
+                                       res[(x.name, y.name)] = self.test_pair(x, y) 
+                return res
         
         def close(self):
                 # end scenario
