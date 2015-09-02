@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario compiled="true" name="disconected_groups.xml" version="1.0" xmlns="nmfPlan" xmlns:CORE="coreSpecific">
+  <network id="wlan1" name="wlan1">
+    <point lat="47.5721365905" lon="-122.120770682" type="gps"/>
+    <type>wireless</type>
+    <alias domain="COREID">1</alias>
+    <member type="interface">n2/eth0</member>
+    <member type="interface">n3/eth0</member>
+    <member type="interface">n4/eth0</member>
+    <member type="interface">n5/eth0</member>
+    <member type="interface">n6/eth0</member>
+    <member type="interface">n7/eth0</member>
+    <member type="interface">n8/eth0</member>
+    <member type="interface">n9/eth0</member>
+    <member type="interface">n10/eth0</member>
+    <member type="interface">n11/eth0</member>
+    <member type="interface">n12/eth0</member>
+    <member type="interface">n13/eth0</member>
+    <member type="interface">n14/eth0</member>
+    <member type="interface">n15/eth0</member>
+    <member type="interface">n16/eth0</member>
+    <member type="interface">n17/eth0</member>
+    <member type="channel">wlan1/wireless</member>
+    <channel id="wlan1/wireless" name="wireless">
+      <type domain="CORE">basic_range</type>
+      <parameter name="range">110.29411764705883</parameter>
+      <parameter name="bandwidth">54000000</parameter>
+      <parameter name="jitter">0</parameter>
+      <parameter name="delay">20000</parameter>
+      <parameter name="error">0</parameter>
+      <member index="0" type="interface">n2/eth0</member>
+      <member index="1" type="interface">n3/eth0</member>
+      <member index="2" type="interface">n4/eth0</member>
+      <member index="3" type="interface">n5/eth0</member>
+      <member index="4" type="interface">n6/eth0</member>
+      <member index="5" type="interface">n7/eth0</member>
+      <member index="6" type="interface">n8/eth0</member>
+      <member index="7" type="interface">n9/eth0</member>
+      <member index="8" type="interface">n10/eth0</member>
+      <member index="9" type="interface">n11/eth0</member>
+      <member index="10" type="interface">n12/eth0</member>
+      <member index="11" type="interface">n13/eth0</member>
+      <member index="12" type="interface">n14/eth0</member>
+      <member index="13" type="interface">n15/eth0</member>
+      <member index="14" type="interface">n16/eth0</member>
+      <member index="15" type="interface">n17/eth0</member>
+    </channel>
+  </network>
+  <host id="n2" name="n2">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n2/eth0" name="eth0">
+      <member index="0" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:12</address>
+      <address type="IPv4">10.0.0.1/24</address>
+    </interface>
+    <alias domain="COREID">2</alias>
+    <point lat="47.578232006" lon="-122.130701786" type="gps"/>
+  </host>
+  <host id="n3" name="n3">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n3/eth0" name="eth0">
+      <member index="1" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:13</address>
+      <address type="IPv4">10.0.0.2/24</address>
+    </interface>
+    <alias domain="COREID">3</alias>
+    <point lat="47.5785125596" lon="-122.128542895" type="gps"/>
+  </host>
+  <host id="n4" name="n4">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n4/eth0" name="eth0">
+      <member index="2" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:14</address>
+      <address type="IPv4">10.0.0.3/24</address>
+    </interface>
+    <alias domain="COREID">4</alias>
+    <point lat="47.5749027161" lon="-122.131295417" type="gps"/>
+  </host>
+  <host id="n5" name="n5">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n5/eth0" name="eth0">
+      <member index="3" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:15</address>
+      <address type="IPv4">10.0.0.4/24</address>
+    </interface>
+    <alias domain="COREID">5</alias>
+    <point lat="47.576024649" lon="-122.131516209" type="gps"/>
+  </host>
+  <host id="n6" name="n6">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n6/eth0" name="eth0">
+      <member index="4" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:16</address>
+      <address type="IPv4">10.0.0.5/24</address>
+    </interface>
+    <alias domain="COREID">6</alias>
+    <point lat="47.5771456753" lon="-122.131617347" type="gps"/>
+  </host>
+  <host id="n7" name="n7">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n7/eth0" name="eth0">
+      <member index="5" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:17</address>
+      <address type="IPv4">10.0.0.6/24</address>
+    </interface>
+    <alias domain="COREID">7</alias>
+    <point lat="47.5782892564" lon="-122.115242187" type="gps"/>
+  </host>
+  <host id="n8" name="n8">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n8/eth0" name="eth0">
+      <member index="6" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:18</address>
+      <address type="IPv4">10.0.0.7/24</address>
+    </interface>
+    <alias domain="COREID">8</alias>
+    <point lat="47.5784243933" lon="-122.117015167" type="gps"/>
+  </host>
+  <host id="n9" name="n9">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n9/eth0" name="eth0">
+      <member index="7" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:19</address>
+      <address type="IPv4">10.0.0.8/24</address>
+    </interface>
+    <alias domain="COREID">9</alias>
+    <point lat="47.5780327236" lon="-122.118737156" type="gps"/>
+  </host>
+  <host id="n10" name="n10">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n10/eth0" name="eth0">
+      <member index="8" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:1a</address>
+      <address type="IPv4">10.0.0.9/24</address>
+    </interface>
+    <alias domain="COREID">10</alias>
+    <point lat="47.5774827147" lon="-122.11391937" type="gps"/>
+  </host>
+  <host id="n11" name="n11">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n11/eth0" name="eth0">
+      <member index="9" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:1b</address>
+      <address type="IPv4">10.0.0.10/24</address>
+    </interface>
+    <alias domain="COREID">11</alias>
+    <point lat="47.5769839139" lon="-122.119253409" type="gps"/>
+  </host>
+  <host id="n12" name="n12">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n12/eth0" name="eth0">
+      <member index="10" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:1c</address>
+      <address type="IPv4">10.0.0.11/24</address>
+    </interface>
+    <alias domain="COREID">12</alias>
+    <point lat="47.5728604021" lon="-122.121875463" type="gps"/>
+  </host>
+  <host id="n13" name="n13">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n13/eth0" name="eth0">
+      <member index="11" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:1d</address>
+      <address type="IPv4">10.0.0.12/24</address>
+    </interface>
+    <alias domain="COREID">13</alias>
+    <point lat="47.5728242442" lon="-122.120679393" type="gps"/>
+  </host>
+  <host id="n14" name="n14">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n14/eth0" name="eth0">
+      <member index="12" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:1e</address>
+      <address type="IPv4">10.0.0.13/24</address>
+    </interface>
+    <alias domain="COREID">14</alias>
+    <point lat="47.5728023347" lon="-122.119582809" type="gps"/>
+  </host>
+  <host id="n15" name="n15">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n15/eth0" name="eth0">
+      <member index="13" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:1f</address>
+      <address type="IPv4">10.0.0.14/24</address>
+    </interface>
+    <alias domain="COREID">15</alias>
+    <point lat="47.5720488885" lon="-122.119894602" type="gps"/>
+  </host>
+  <host id="n16" name="n16">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n16/eth0" name="eth0">
+      <member index="14" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:20</address>
+      <address type="IPv4">10.0.0.15/24</address>
+    </interface>
+    <alias domain="COREID">16</alias>
+    <point lat="47.5717982883" lon="-122.12065668" type="gps"/>
+  </host>
+  <host id="n17" name="n17">
+    <type domain="CORE">jadhoc</type>
+    <interface id="n17/eth0" name="eth0">
+      <member index="15" type="channel">wlan1/wireless</member>
+      <member type="network">wlan1</member>
+      <address type="mac">00:00:00:aa:00:21</address>
+      <address type="IPv4">10.0.0.16/24</address>
+    </interface>
+    <alias domain="COREID">17</alias>
+    <point lat="47.5718329193" lon="-122.12165331" type="gps"/>
+  </host>
+  <CORE:defaultservices>
+    <device type="jadhoc"/>
+  </CORE:defaultservices>
+  <CORE:sessionconfig>
+    <origin alt="2.0" lat="47.5791667" lon="-122.132322" scale100="150.0"/>
+    <metadata>
+      <parameter name="global_options">interface_names=no ip_addresses=yes ipv6_addresses=yes node_labels=yes link_labels=yes show_api=no background_images=no annotations=yes grid=yes traffic_start=0</parameter>
+      <parameter name="canvas c1">{name {Canvas1}}</parameter>
+    </metadata>
+  </CORE:sessionconfig>
+</scenario>
